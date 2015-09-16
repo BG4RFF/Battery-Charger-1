@@ -1,0 +1,9 @@
+* simulation of BatteryChargerOdd
+.control
+  set filetype=ascii
+  dc vbattery 4 9 0.01
+
+write
+.endc
+.include /data/home/ksarkies/Development-Electronics/Spice-models/models.lib
+.include BatteryChargerOdd.net

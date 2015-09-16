@@ -1,0 +1,4 @@
+Warning -- Level not specified on line "( is=8.52e-15 vaf=120.7 bf=280 ikf=1.1412 ne=1.3647 ise=3.562e-14 ikr=0.1 isc=1.00e-12 nc=1.4 nr=1 br=10 rc=0.05 cjc=1.20e-11 fc=0.5 mjc=0.28 vjc=0.4 cje=3.10e-11 mje=0.38 vje=0.9 tf=4.10e-10 itf=1.5 vtf=3 xtf=25 re=0.2 tr=8.00e-10)"
+Using level 1.
+
+Note: No ".plot", ".print", or ".fourier" lines; no simulations run

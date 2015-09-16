@@ -1,0 +1,92 @@
+   1               		.file	"lcdtest-LC75853.c"
+   2               		.arch atmega88
+   3               	__SREG__ = 0x3f
+   4               	__SP_H__ = 0x3e
+   5               	__SP_L__ = 0x3d
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+   8               		.global __do_copy_data
+   9               		.global __do_clear_bss
+  17               	.Ltext0:
+  18               	.global	configurePorts
+  20               	configurePorts:
+  21               	.LFB2:
+  22               	.LM1:
+  23               	/* prologue: frame size=0 */
+  24               	/* prologue end (size=0) */
+  25               	.LM2:
+  26 0000 8AB1      		in r24,42-0x20
+  27 0002 8C61      		ori r24,lo8(28)
+  28 0004 8AB9      		out 42-0x20,r24
+  29               	.LM3:
+  30 0006 8DE4      		ldi r24,lo8(77)
+  31 0008 8093 6400 		sts 100,r24
+  32               	.LM4:
+  33 000c 80B7      		in r24,80-0x20
+  34 000e 8068      		ori r24,lo8(-128)
+  35 0010 80BF      		out 80-0x20,r24
+  36               	/* epilogue: frame size=0 */
+  37 0012 0895      		ret
+  38               	/* epilogue end (size=1) */
+  39               	/* function configurePorts size 10 (9) */
+  40               	.LFE2:
+  42               	.global	main
+  44               	main:
+  45               	.LFB3:
+  46               	.LM5:
+  47               	/* prologue: frame size=16 */
+  48 0014 C0E0      		ldi r28,lo8(__stack - 16)
+  49 0016 D0E0      		ldi r29,hi8(__stack - 16)
+  50 0018 DEBF      		out __SP_H__,r29
+  51 001a CDBF      		out __SP_L__,r28
+  52               	/* prologue end (size=4) */
+  53               	.LM6:
+  54 001c F1DF      		rcall configurePorts
+  55               	.LM7:
+  56 001e 00D0      		rcall InitLCD
+  57               	.LBB2:
+  58               	.LM8:
+  59 0020 68E0      		ldi r22,lo8(8)
+  60 0022 83E2      		ldi r24,lo8(35)
+  61 0024 FE01      		movw r30,r28
+  62 0026 3996      		adiw r30,9
+  63               	.L6:
+  64               	.LM9:
+  65 0028 8083      		st Z,r24
+  66 002a 3197      		sbiw r30,1
+  67               	.LM10:
+  68 002c 6150      		subi r22,lo8(-(-1))
+  69 002e E1F7      		brne .L6
+  70               	.L11:
+  71               	.LBE2:
+  72               	.LM11:
+  73 0030 CE01      		movw r24,r28
+  74 0032 0196      		adiw r24,1
+  75 0034 00D0      		rcall displayLCD
+  76               	.LM12:
+  77 0036 60E0      		ldi r22,lo8(0)
+  78 0038 FBCF      		rjmp .L11
+  79               	/* epilogue: frame size=16 */
+  80               	/* epilogue: noreturn */
+  81               	/* epilogue end (size=0) */
+  82               	/* function main size 20 (16) */
+  83               	.LFE3:
+  85               		.comm testLCDID,1,1
+  86               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 lcdtest-LC75853.c
+     /tmp/ccrH125Z.s:3      *ABS*:0000003f __SREG__
+     /tmp/ccrH125Z.s:4      *ABS*:0000003e __SP_H__
+     /tmp/ccrH125Z.s:5      *ABS*:0000003d __SP_L__
+     /tmp/ccrH125Z.s:6      *ABS*:00000000 __tmp_reg__
+     /tmp/ccrH125Z.s:7      *ABS*:00000001 __zero_reg__
+     /tmp/ccrH125Z.s:20     .text:00000000 configurePorts
+     /tmp/ccrH125Z.s:44     .text:00000014 main
+                            *COM*:00000001 testLCDID
+
+UNDEFINED SYMBOLS
+__do_copy_data
+__do_clear_bss
+__stack
+InitLCD
+displayLCD

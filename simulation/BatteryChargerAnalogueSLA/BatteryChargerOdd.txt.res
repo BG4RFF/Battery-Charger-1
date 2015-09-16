@@ -1,0 +1,3 @@
+
+Circuit: * simulation of batterychargerodd
+

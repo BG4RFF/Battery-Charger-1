@@ -1,0 +1,567 @@
+   1               		.file	"i2c.c"
+   2               		.arch atmega168
+   3               	__SREG__ = 0x3f
+   4               	__SP_H__ = 0x3e
+   5               	__SP_L__ = 0x3d
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+   8               		.global __do_copy_data
+   9               		.global __do_clear_bss
+  17               	.Ltext0:
+  18               	.global	twiState
+  19               	.global	twiState
+  20               		.section .bss
+  23               	twiState:
+  24 0000 00        		.skip 1,0
+  25               		.text
+  26               	.global	twiInit
+  28               	twiInit:
+  29               	.LFB2:
+  30               	.LM1:
+  31               	/* prologue: frame size=0 */
+  32               	/* prologue end (size=0) */
+  33               	.LM2:
+  34 0000 21E0      		ldi r18,hi8(401)
+  35 0002 8139      		cpi r24,lo8(401)
+  36 0004 9207      		cpc r25,r18
+  37 0006 10F0      		brlo .L2
+  38               	.LM3:
+  39 0008 80E9      		ldi r24,lo8(400)
+  40 000a 91E0      		ldi r25,hi8(400)
+  41               	.L2:
+  42               	.LM4:
+  43 000c 9C01      		movw r18,r24
+  44 000e 4427      		clr r20
+  45 0010 5527      		clr r21
+  46 0012 60EA      		ldi r22,lo8(4000)
+  47 0014 7FE0      		ldi r23,hi8(4000)
+  48 0016 80E0      		ldi r24,hlo8(4000)
+  49 0018 90E0      		ldi r25,hhi8(4000)
+  50 001a 0E94 0000 		call __divmodsi4
+  51               	.LM5:
+  52 001e 90E0      		ldi r25,lo8(0)
+  53               	.LM6:
+  54 0020 2F3F      		cpi r18,255
+  55 0022 3105      		cpc r19,__zero_reg__
+  56 0024 61F0      		breq .L4
+  57 0026 58F0      		brlo .L4
+  58               	.L5:
+  59               	.LM7:
+  60 0028 9F5F      		subi r25,lo8(-(1))
+  61               	.LM8:
+  62 002a 3695      		lsr r19
+  63 002c 2795      		ror r18
+  64 002e 3695      		lsr r19
+  65 0030 2795      		ror r18
+  66 0032 2F3F      		cpi r18,255
+  67 0034 3105      		cpc r19,__zero_reg__
+  68 0036 19F0      		breq .L4
+  69 0038 10F0      		brlo .L4
+  70 003a 9430      		cpi r25,lo8(4)
+  71 003c A8F3      		brlo .L5
+  72               	.L4:
+  73               	.LM9:
+  74 003e 2830      		cpi r18,8
+  75 0040 3105      		cpc r19,__zero_reg__
+  76 0042 10F4      		brsh .L6
+  77 0044 28E0      		ldi r18,lo8(8)
+  78 0046 30E0      		ldi r19,hi8(8)
+  79               	.L6:
+  80               	.LM10:
+  81 0048 822F      		mov r24,r18
+  82 004a 8850      		subi r24,lo8(-(-8))
+  83 004c 8093 B800 		sts 184,r24
+  84               	.LM11:
+  85 0050 9093 B900 		sts 185,r25
+  86               	/* epilogue: frame size=0 */
+  87 0054 0895      		ret
+  88               	/* epilogue end (size=1) */
+  89               	/* function twiInit size 43 (42) */
+  90               	.LFE2:
+  92               	.global	twiErrorStatus
+  94               	twiErrorStatus:
+  95               	.LFB3:
+  96               	.LM12:
+  97               	/* prologue: frame size=0 */
+  98               	/* prologue end (size=0) */
+  99               	.LM13:
+ 100 0056 8091 0000 		lds r24,twiState
+ 101 005a 8823      		tst r24
+ 102 005c 19F0      		breq .L9
+ 103               	.LM14:
+ 104 005e 8FEF      		ldi r24,lo8(255)
+ 105 0060 90E0      		ldi r25,hi8(255)
+ 106 0062 0895      		ret
+ 107               	.L9:
+ 108               	.LM15:
+ 109 0064 8091 0000 		lds r24,twiLastError
+ 110 0068 9927      		clr r25
+ 111               	.LM16:
+ 112 006a 0895      		ret
+ 113               	/* epilogue: frame size=0 */
+ 114               	/* epilogue: noreturn */
+ 115               	/* epilogue end (size=0) */
+ 116               	/* function twiErrorStatus size 11 (11) */
+ 117               	.LFE3:
+ 119               	.global	twiCompletionStatus
+ 121               	twiCompletionStatus:
+ 122               	.LFB4:
+ 123               	.LM17:
+ 124               	/* prologue: frame size=0 */
+ 125               	/* prologue end (size=0) */
+ 126               	.LM18:
+ 127 006c 8091 0000 		lds r24,twiState
+ 128 0070 8823      		tst r24
+ 129 0072 19F0      		breq .L11
+ 130               	.LM19:
+ 131 0074 8FEF      		ldi r24,lo8(255)
+ 132 0076 90E0      		ldi r25,hi8(255)
+ 133 0078 0895      		ret
+ 134               	.L11:
+ 135               	.LM20:
+ 136 007a 8091 0000 		lds r24,writeInPointer
+ 137 007e 9091 0000 		lds r25,writeOutPointer
+ 138 0082 8917      		cp r24,r25
+ 139 0084 11F0      		breq .L12
+ 140               	.LM21:
+ 141 0086 9058      		subi r25,lo8(-(-128))
+ 142 0088 07C0      		rjmp .L14
+ 143               	.L12:
+ 144               	.LM22:
+ 145 008a 9091 0000 		lds r25,readInPointer
+ 146 008e 8091 0000 		lds r24,readCount
+ 147 0092 9817      		cp r25,r24
+ 148 0094 21F0      		breq .L13
+ 149               	.LM23:
+ 150 0096 905C      		subi r25,lo8(-(64))
+ 151               	.L14:
+ 152 0098 892F      		mov r24,r25
+ 153 009a 9927      		clr r25
+ 154 009c 0895      		ret
+ 155               	.L13:
+ 156               	.LM24:
+ 157 009e 80E0      		ldi r24,lo8(0)
+ 158 00a0 90E0      		ldi r25,hi8(0)
+ 159               	.LM25:
+ 160 00a2 0895      		ret
+ 161               	/* epilogue: frame size=0 */
+ 162               	/* epilogue: noreturn */
+ 163               	/* epilogue end (size=0) */
+ 164               	/* function twiCompletionStatus size 28 (28) */
+ 165               	.LFE4:
+ 167               	.global	twiSetupTransaction
+ 169               	twiSetupTransaction:
+ 170               	.LFB5:
+ 171               	.LM26:
+ 172               	/* prologue: frame size=0 */
+ 173               	/* prologue end (size=0) */
+ 174               	.LM27:
+ 175 00a4 8093 0000 		sts readCount,r24
+ 176               	.LM28:
+ 177 00a8 1092 0000 		sts readInPointer,__zero_reg__
+ 178               	.LM29:
+ 179 00ac 1092 0000 		sts readOutPointer,__zero_reg__
+ 180               	.LM30:
+ 181 00b0 1092 0000 		sts writeInPointer,__zero_reg__
+ 182               	.LM31:
+ 183 00b4 1092 0000 		sts writeOutPointer,__zero_reg__
+ 184               	/* epilogue: frame size=0 */
+ 185 00b8 0895      		ret
+ 186               	/* epilogue end (size=1) */
+ 187               	/* function twiSetupTransaction size 11 (10) */
+ 188               	.LFE5:
+ 190               	.global	twiWriteByte
+ 192               	twiWriteByte:
+ 193               	.LFB6:
+ 194               	.LM32:
+ 195               	/* prologue: frame size=0 */
+ 196               	/* prologue end (size=0) */
+ 197               	.LM33:
+ 198 00ba 9091 0000 		lds r25,writeInPointer
+ 199 00be 9132      		cpi r25,lo8(33)
+ 200 00c0 18F0      		brlo .L17
+ 201               	.LM34:
+ 202 00c2 80E0      		ldi r24,lo8(0)
+ 203 00c4 90E0      		ldi r25,hi8(0)
+ 204 00c6 0895      		ret
+ 205               	.L17:
+ 206               	.LM35:
+ 207 00c8 E92F      		mov r30,r25
+ 208 00ca FF27      		clr r31
+ 209 00cc E050      		subi r30,lo8(-(twiWriteBuffer))
+ 210 00ce F040      		sbci r31,hi8(-(twiWriteBuffer))
+ 211 00d0 8083      		st Z,r24
+ 212 00d2 9F5F      		subi r25,lo8(-(1))
+ 213 00d4 9093 0000 		sts writeInPointer,r25
+ 214               	.LM36:
+ 215 00d8 81E0      		ldi r24,lo8(1)
+ 216 00da 90E0      		ldi r25,hi8(1)
+ 217               	.LM37:
+ 218 00dc 0895      		ret
+ 219               	/* epilogue: frame size=0 */
+ 220               	/* epilogue: noreturn */
+ 221               	/* epilogue end (size=0) */
+ 222               	/* function twiWriteByte size 18 (18) */
+ 223               	.LFE6:
+ 225               	.global	twiReadByte
+ 227               	twiReadByte:
+ 228               	.LFB7:
+ 229               	.LM38:
+ 230               	/* prologue: frame size=0 */
+ 231               	/* prologue end (size=0) */
+ 232               	.LM39:
+ 233 00de 2091 0000 		lds r18,readOutPointer
+ 234 00e2 2132      		cpi r18,lo8(33)
+ 235 00e4 18F0      		brlo .L19
+ 236               	.LM40:
+ 237 00e6 8FEF      		ldi r24,lo8(255)
+ 238 00e8 90E0      		ldi r25,hi8(255)
+ 239 00ea 0895      		ret
+ 240               	.L19:
+ 241               	.LM41:
+ 242 00ec E22F      		mov r30,r18
+ 243 00ee FF27      		clr r31
+ 244 00f0 E050      		subi r30,lo8(-(twiReadBuffer))
+ 245 00f2 F040      		sbci r31,hi8(-(twiReadBuffer))
+ 246 00f4 8081      		ld r24,Z
+ 247 00f6 2F5F      		subi r18,lo8(-(1))
+ 248 00f8 2093 0000 		sts readOutPointer,r18
+ 249 00fc 9927      		clr r25
+ 250               	.LM42:
+ 251 00fe 0895      		ret
+ 252               	/* epilogue: frame size=0 */
+ 253               	/* epilogue: noreturn */
+ 254               	/* epilogue end (size=0) */
+ 255               	/* function twiReadByte size 17 (17) */
+ 256               	.LFE7:
+ 258               	.global	twiLaunch
+ 260               	twiLaunch:
+ 261               	.LFB8:
+ 262               	.LM43:
+ 263               	/* prologue: frame size=0 */
+ 264               	/* prologue end (size=0) */
+ 265 0100 9091 0000 		lds r25,twiState
+ 266               	.L21:
+ 267               	.LM44:
+ 268 0104 9923      		tst r25
+ 269 0106 F1F7      		brne .L21
+ 270               	.LM45:
+ 271 0108 9093 0000 		sts twiLastError,r25
+ 272               	.LM46:
+ 273 010c 8E7F      		andi r24,lo8(-2)
+ 274 010e 8093 0000 		sts twiDevice,r24
+ 275               	.LM47:
+ 276 0112 8091 0000 		lds r24,writeInPointer
+ 277 0116 2091 0000 		lds r18,readCount
+ 278 011a 8823      		tst r24
+ 279 011c 39F0      		breq .L24
+ 280               	.LM48:
+ 281 011e 2223      		tst r18
+ 282 0120 19F0      		breq .L25
+ 283 0122 9093 0000 		sts twiTransactionType,r25
+ 284 0126 0BC0      		rjmp .L27
+ 285               	.L25:
+ 286               	.LM49:
+ 287 0128 81E0      		ldi r24,lo8(1)
+ 288 012a 03C0      		rjmp .L30
+ 289               	.L24:
+ 290               	.LM50:
+ 291 012c 2223      		tst r18
+ 292 012e 21F0      		breq .L28
+ 293 0130 82E0      		ldi r24,lo8(2)
+ 294               	.L30:
+ 295 0132 8093 0000 		sts twiTransactionType,r24
+ 296 0136 03C0      		rjmp .L27
+ 297               	.L28:
+ 298               	.LM51:
+ 299 0138 80E0      		ldi r24,lo8(0)
+ 300 013a 90E0      		ldi r25,hi8(0)
+ 301 013c 0895      		ret
+ 302               	.L27:
+ 303               	.LM52:
+ 304 013e 85EA      		ldi r24,lo8(-91)
+ 305 0140 8093 BC00 		sts 188,r24
+ 306               	.LM53:
+ 307 0144 88E0      		ldi r24,lo8(8)
+ 308 0146 8093 0000 		sts twiState,r24
+ 309               	.LM54:
+ 310               	/* #APP */
+ 311 014a 7894      		sei
+ 312               	.LM55:
+ 313               	/* #NOAPP */
+ 314 014c 81E0      		ldi r24,lo8(1)
+ 315 014e 90E0      		ldi r25,hi8(1)
+ 316               	.LM56:
+ 317 0150 0895      		ret
+ 318               	/* epilogue: frame size=0 */
+ 319               	/* epilogue: noreturn */
+ 320               	/* epilogue end (size=0) */
+ 321               	/* function twiLaunch size 42 (42) */
+ 322               	.LFE8:
+ 324               	.global	__vector_24
+ 326               	__vector_24:
+ 327               	.LFB9:
+ 328               	.LM57:
+ 329               	/* prologue: frame size=0 */
+ 330 0152 1F92      		push __zero_reg__
+ 331 0154 0F92      		push __tmp_reg__
+ 332 0156 0FB6      		in __tmp_reg__,__SREG__
+ 333 0158 0F92      		push __tmp_reg__
+ 334 015a 1124      		clr __zero_reg__
+ 335 015c 2F93      		push r18
+ 336 015e 3F93      		push r19
+ 337 0160 4F93      		push r20
+ 338 0162 8F93      		push r24
+ 339 0164 9F93      		push r25
+ 340 0166 EF93      		push r30
+ 341 0168 FF93      		push r31
+ 342               	/* prologue end (size=12) */
+ 343               	.LM58:
+ 344 016a 4091 B900 		lds r20,185
+ 345 016e 487F      		andi r20,lo8(-8)
+ 346               	.LM59:
+ 347 0170 8091 0000 		lds r24,twiState
+ 348 0174 9927      		clr r25
+ 349 0176 8330      		cpi r24,3
+ 350 0178 9105      		cpc r25,__zero_reg__
+ 351 017a 09F4      		brne .+2
+ 352 017c 44C0      		rjmp .L52
+ 353               	.LM60:
+ 354 017e 8430      		cpi r24,4
+ 355 0180 9105      		cpc r25,__zero_reg__
+ 356 0182 1CF4      		brge .L71
+ 357 0184 0297      		sbiw r24,2
+ 358 0186 B1F0      		breq .L39
+ 359 0188 8DC0      		rjmp .L31
+ 360               	.L71:
+ 361 018a 0897      		sbiw r24,8
+ 362 018c 09F0      		breq .+2
+ 363 018e 8AC0      		rjmp .L31
+ 364               	.LM61:
+ 365 0190 4830      		cpi r20,lo8(8)
+ 366 0192 11F0      		breq .L35
+ 367 0194 4031      		cpi r20,lo8(16)
+ 368 0196 A1F5      		brne .L50
+ 369               	.L35:
+ 370               	.LM62:
+ 371 0198 8091 0000 		lds r24,twiTransactionType
+ 372 019c 9091 0000 		lds r25,twiDevice
+ 373 01a0 8230      		cpi r24,lo8(2)
+ 374 01a2 09F4      		brne .L36
+ 375               	.LM63:
+ 376 01a4 9160      		ori r25,lo8(1)
+ 377               	.L36:
+ 378               	.LM64:
+ 379 01a6 9093 BB00 		sts 187,r25
+ 380               	.LM65:
+ 381 01aa 85E8      		ldi r24,lo8(-123)
+ 382 01ac 8093 BC00 		sts 188,r24
+ 383               	.LM66:
+ 384 01b0 82E0      		ldi r24,lo8(2)
+ 385 01b2 5CC0      		rjmp .L75
+ 386               	.L39:
+ 387               	.LM67:
+ 388 01b4 8091 0000 		lds r24,twiTransactionType
+ 389 01b8 8230      		cpi r24,lo8(2)
+ 390 01ba 79F4      		brne .L40
+ 391               	.LM68:
+ 392 01bc 4034      		cpi r20,lo8(64)
+ 393 01be 49F4      		brne .L41
+ 394               	.LM69:
+ 395 01c0 8091 0000 		lds r24,readCount
+ 396 01c4 8130      		cpi r24,lo8(1)
+ 397 01c6 B9F0      		breq .L82
+ 398               	.LM70:
+ 399 01c8 85EC      		ldi r24,lo8(-59)
+ 400               	.L72:
+ 401 01ca 8093 BC00 		sts 188,r24
+ 402               	.LM71:
+ 403 01ce 83E0      		ldi r24,lo8(3)
+ 404 01d0 4DC0      		rjmp .L75
+ 405               	.L41:
+ 406               	.LM72:
+ 407 01d2 4834      		cpi r20,lo8(72)
+ 408 01d4 09F4      		brne .+2
+ 409 01d6 5DC0      		rjmp .L81
+ 410 01d8 13C0      		rjmp .L50
+ 411               	.L40:
+ 412               	.LM73:
+ 413 01da 4831      		cpi r20,lo8(24)
+ 414 01dc 71F4      		brne .L48
+ 415               	.LM74:
+ 416 01de 8091 0000 		lds r24,writeOutPointer
+ 417 01e2 E82F      		mov r30,r24
+ 418 01e4 FF27      		clr r31
+ 419 01e6 E050      		subi r30,lo8(-(twiWriteBuffer))
+ 420 01e8 F040      		sbci r31,hi8(-(twiWriteBuffer))
+ 421 01ea 8F5F      		subi r24,lo8(-(1))
+ 422 01ec 8093 0000 		sts writeOutPointer,r24
+ 423 01f0 8081      		ld r24,Z
+ 424 01f2 8093 BB00 		sts 187,r24
+ 425               	.L82:
+ 426               	.LM75:
+ 427 01f6 85E8      		ldi r24,lo8(-123)
+ 428 01f8 E8CF      		rjmp .L72
+ 429               	.L48:
+ 430               	.LM76:
+ 431 01fa 4032      		cpi r20,lo8(32)
+ 432 01fc 09F4      		brne .+2
+ 433 01fe 49C0      		rjmp .L81
+ 434               	.L50:
+ 435               	.LM77:
+ 436 0200 4093 0000 		sts twiLastError,r20
+ 437 0204 4DC0      		rjmp .L73
+ 438               	.L52:
+ 439               	.LM78:
+ 440 0206 2091 0000 		lds r18,twiTransactionType
+ 441 020a 2230      		cpi r18,lo8(2)
+ 442 020c F1F4      		brne .L53
+ 443               	.LM79:
+ 444 020e 2091 0000 		lds r18,readInPointer
+ 445 0212 E22F      		mov r30,r18
+ 446 0214 FF27      		clr r31
+ 447 0216 E050      		subi r30,lo8(-(twiReadBuffer))
+ 448 0218 F040      		sbci r31,hi8(-(twiReadBuffer))
+ 449 021a 8091 BB00 		lds r24,187
+ 450 021e 8083      		st Z,r24
+ 451 0220 2F5F      		subi r18,lo8(-(1))
+ 452 0222 2093 0000 		sts readInPointer,r18
+ 453               	.LM80:
+ 454 0226 4035      		cpi r20,lo8(80)
+ 455 0228 61F4      		brne .L54
+ 456               	.LM81:
+ 457 022a 8091 0000 		lds r24,readCount
+ 458 022e 2817      		cp r18,r24
+ 459 0230 81F1      		breq .L81
+ 460               	.LM82:
+ 461 0232 3327      		clr r19
+ 462 0234 9927      		clr r25
+ 463 0236 0197      		sbiw r24,1
+ 464 0238 2817      		cp r18,r24
+ 465 023a 3907      		cpc r19,r25
+ 466 023c 21F1      		breq .L76
+ 467               	.LM83:
+ 468 023e 85EC      		ldi r24,lo8(-59)
+ 469 0240 23C0      		rjmp .L74
+ 470               	.L54:
+ 471               	.LM84:
+ 472 0242 4835      		cpi r20,lo8(88)
+ 473 0244 31F1      		breq .L81
+ 474               	.LM85:
+ 475 0246 80E5      		ldi r24,lo8(80)
+ 476 0248 29C0      		rjmp .L80
+ 477               	.L53:
+ 478               	.LM86:
+ 479 024a 4832      		cpi r20,lo8(40)
+ 480 024c 01F5      		brne .L63
+ 481               	.LM87:
+ 482 024e 9091 0000 		lds r25,writeOutPointer
+ 483 0252 8091 0000 		lds r24,writeInPointer
+ 484 0256 9817      		cp r25,r24
+ 485 0258 61F4      		brne .L64
+ 486               	.LM88:
+ 487 025a 2223      		tst r18
+ 488 025c D1F4      		brne .L81
+ 489               	.LM89:
+ 490 025e 82E0      		ldi r24,lo8(2)
+ 491 0260 8093 0000 		sts twiTransactionType,r24
+ 492               	.LM90:
+ 493 0264 85EA      		ldi r24,lo8(-91)
+ 494 0266 8093 BC00 		sts 188,r24
+ 495               	.LM91:
+ 496 026a 88E0      		ldi r24,lo8(8)
+ 497               	.L75:
+ 498 026c 8093 0000 		sts twiState,r24
+ 499 0270 19C0      		rjmp .L31
+ 500               	.L64:
+ 501               	.LM92:
+ 502 0272 E92F      		mov r30,r25
+ 503 0274 FF27      		clr r31
+ 504 0276 E050      		subi r30,lo8(-(twiWriteBuffer))
+ 505 0278 F040      		sbci r31,hi8(-(twiWriteBuffer))
+ 506 027a 9F5F      		subi r25,lo8(-(1))
+ 507 027c 9093 0000 		sts writeOutPointer,r25
+ 508 0280 8081      		ld r24,Z
+ 509 0282 8093 BB00 		sts 187,r24
+ 510               	.L76:
+ 511               	.LM93:
+ 512 0286 85E8      		ldi r24,lo8(-123)
+ 513               	.L74:
+ 514 0288 8093 BC00 		sts 188,r24
+ 515 028c 0BC0      		rjmp .L31
+ 516               	.L63:
+ 517               	.LM94:
+ 518 028e 4033      		cpi r20,lo8(48)
+ 519 0290 21F4      		brne .L69
+ 520               	.L81:
+ 521               	.LM95:
+ 522 0292 84E9      		ldi r24,lo8(-108)
+ 523 0294 8093 BC00 		sts 188,r24
+ 524 0298 03C0      		rjmp .L73
+ 525               	.L69:
+ 526               	.LM96:
+ 527 029a 88E2      		ldi r24,lo8(40)
+ 528               	.L80:
+ 529 029c 8093 0000 		sts twiLastError,r24
+ 530               	.L73:
+ 531               	.LM97:
+ 532 02a0 1092 0000 		sts twiState,__zero_reg__
+ 533               	.L31:
+ 534               	/* epilogue: frame size=0 */
+ 535 02a4 FF91      		pop r31
+ 536 02a6 EF91      		pop r30
+ 537 02a8 9F91      		pop r25
+ 538 02aa 8F91      		pop r24
+ 539 02ac 4F91      		pop r20
+ 540 02ae 3F91      		pop r19
+ 541 02b0 2F91      		pop r18
+ 542 02b2 0F90      		pop __tmp_reg__
+ 543 02b4 0FBE      		out __SREG__,__tmp_reg__
+ 544 02b6 0F90      		pop __tmp_reg__
+ 545 02b8 1F90      		pop __zero_reg__
+ 546 02ba 1895      		reti
+ 547               	/* epilogue end (size=12) */
+ 548               	/* function __vector_24 size 183 (159) */
+ 549               	.LFE9:
+ 551               		.comm twiWriteBuffer,32,1
+ 552               		.comm twiReadBuffer,32,1
+ 553               		.comm writeInPointer,1,1
+ 554               		.comm writeOutPointer,1,1
+ 555               		.comm readInPointer,1,1
+ 556               		.comm readOutPointer,1,1
+ 557               		.comm readCount,1,1
+ 558               		.comm twiTransactionType,1,1
+ 559               		.comm twiLastError,1,1
+ 560               		.comm twiDevice,1,1
+ 561               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 i2c.c
+     /tmp/ccG9XiD4.s:3      *ABS*:0000003f __SREG__
+     /tmp/ccG9XiD4.s:4      *ABS*:0000003e __SP_H__
+     /tmp/ccG9XiD4.s:5      *ABS*:0000003d __SP_L__
+     /tmp/ccG9XiD4.s:6      *ABS*:00000000 __tmp_reg__
+     /tmp/ccG9XiD4.s:7      *ABS*:00000001 __zero_reg__
+     /tmp/ccG9XiD4.s:23     .bss:00000000 twiState
+     /tmp/ccG9XiD4.s:28     .text:00000000 twiInit
+     /tmp/ccG9XiD4.s:94     .text:00000056 twiErrorStatus
+                            *COM*:00000001 twiLastError
+     /tmp/ccG9XiD4.s:121    .text:0000006c twiCompletionStatus
+                            *COM*:00000001 writeInPointer
+                            *COM*:00000001 writeOutPointer
+                            *COM*:00000001 readInPointer
+                            *COM*:00000001 readCount
+     /tmp/ccG9XiD4.s:169    .text:000000a4 twiSetupTransaction
+                            *COM*:00000001 readOutPointer
+     /tmp/ccG9XiD4.s:192    .text:000000ba twiWriteByte
+                            *COM*:00000020 twiWriteBuffer
+     /tmp/ccG9XiD4.s:227    .text:000000de twiReadByte
+                            *COM*:00000020 twiReadBuffer
+     /tmp/ccG9XiD4.s:260    .text:00000100 twiLaunch
+                            *COM*:00000001 twiDevice
+                            *COM*:00000001 twiTransactionType
+     /tmp/ccG9XiD4.s:326    .text:00000152 __vector_24
+
+UNDEFINED SYMBOLS
+__do_copy_data
+__do_clear_bss
+__divmodsi4

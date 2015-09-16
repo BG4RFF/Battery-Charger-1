@@ -1,0 +1,26 @@
+* simulation of test
+.control
+  op
+echo result_show: 
+  show m1 
+  show d1 
+  show v1 
+  show q1 
+  show r2 
+  show r1 
+  show rl 
+  echo ---------------------------------------------
+  echo -------   operation point    ----------------
+  echo ---------------------------------------------
+  echo result_op_start: 
+  print all
+  echo result_op_end 
+
+write
+.endc
+.include /home/ksarkies/Electronics-Development/spice-models/diodes
+.include /home/ksarkies/Electronics-Development/spice-models/
+.include /home/ksarkies/Electronics-Development/spice-models/bjt
+.include /home/ksarkies/Electronics-Development/spice-models/IR
+.include /home/ksarkies/Electronics-Development/spice-models/bjt/2N3904.mod
+.include test.net

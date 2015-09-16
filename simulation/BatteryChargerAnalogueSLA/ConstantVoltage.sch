@@ -1,0 +1,99 @@
+v 20081231 1
+C 40000 40000 0 0 0 title-B.sym
+C 46600 45700 1 90 0 resistor-1.sym
+{
+T 46200 46000 5 10 0 0 90 0 1
+device=RESISTOR
+T 46300 46100 5 10 1 1 180 0 1
+refdes=R3
+T 46100 45700 5 10 1 1 0 0 1
+value=1K
+}
+N 45100 46600 48700 46600 4
+N 46500 45700 46500 45200 4
+N 46500 44300 46500 43900 4
+N 46500 41800 48700 41800 4
+N 45600 45600 46500 45600 4
+N 45100 45100 45100 44500 4
+{
+T 44500 45000 5 10 1 1 0 0 1
+netname=Q2E
+}
+N 48700 46600 48700 45900 4
+N 48700 41800 48700 44700 4
+C 45600 45100 1 0 1 npn-2.sym
+{
+T 45000 45600 5 10 0 0 0 6 1
+device=NPN_TRANSISTOR
+T 44900 45600 5 10 1 1 0 6 1
+refdes=Q3
+T 45600 45100 5 10 0 0 0 6 1
+file=/home/ksarkies/Development-Electronics/Spice-models/models.lib
+T 44900 45900 5 10 1 1 0 6 1
+value=TIP31
+}
+C 46700 44300 1 90 0 zener-1.sym
+{
+T 46100 44700 5 10 0 0 90 0 1
+device=DIODE
+T 46200 44800 5 10 1 1 180 0 1
+refdes=D1
+T 46700 44300 5 10 0 0 0 0 1
+file=/home/ksarkies/Development-Electronics/Spice-models/models.lib
+T 46700 44300 5 10 0 0 0 0 1
+value=D1N4099
+T 45800 45000 5 10 1 1 0 0 1
+comment=6.8V
+}
+C 47000 41500 1 0 0 gnd-1.sym
+C 48400 44700 1 0 0 vdc-1.sym
+{
+T 49100 45350 5 10 1 1 0 0 1
+refdes=V1
+T 49100 45550 5 10 0 0 0 0 1
+device=VOLTAGE_SOURCE
+T 49100 45750 5 10 0 0 0 0 1
+footprint=none
+T 49100 45650 5 10 1 1 0 0 1
+value=DC 12V
+}
+C 44800 43300 1 0 0 vdc-1.sym
+{
+T 44000 43950 5 10 1 1 0 0 1
+refdes=Vbattery
+T 45500 44150 5 10 0 0 0 0 1
+device=VOLTAGE_SOURCE
+T 45500 44350 5 10 0 0 0 0 1
+footprint=none
+T 44000 43650 5 10 1 1 0 0 1
+value=DC 7.4V
+}
+N 45100 43000 45100 43300 4
+C 46300 43900 1 270 0 diode-1.sym
+{
+T 46900 43500 5 10 0 0 270 0 1
+device=DIODE
+T 45900 43400 5 10 1 1 0 0 1
+refdes=D2
+T 46300 43900 5 10 0 0 0 0 1
+file=/home/ksarkies/Development-Electronics/Spice-models/models.lib
+T 45600 43700 5 10 1 1 0 0 1
+value=D1N4001
+}
+N 45100 46100 45100 46600 4
+T 51400 41100 9 10 1 0 0 0 1
+Lead-Acid Battery Charger SPICE sim
+T 54100 40300 9 10 1 0 0 0 1
+Ken Sarkies 19/May/2010
+C 46200 41800 1 0 0 idc-1.sym
+{
+T 45400 42650 5 10 1 1 0 0 1
+refdes=Iconstant
+T 46900 42650 5 10 0 0 0 0 1
+device=CURRENT_SOURCE
+T 46900 42850 5 10 0 0 0 0 1
+footprint=none
+T 45400 42250 5 10 1 1 0 0 1
+value=DC 1A
+}
+N 45100 43000 46500 43000 4

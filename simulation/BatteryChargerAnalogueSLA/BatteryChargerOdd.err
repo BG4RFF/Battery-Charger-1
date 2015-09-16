@@ -1,0 +1,4 @@
+Too few parameters for subcircuit type "lm324" (instance: xx3.3)
+Too few parameters for subcircuit type "lm324" (instance: xx2.2)
+Too few parameters for subcircuit type "lm324" (instance: xx1.1)
+Note: No ".plot", ".print", or ".fourier" lines; no simulations run

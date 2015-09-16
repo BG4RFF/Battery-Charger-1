@@ -1,0 +1,77 @@
+   1               		.file	"timer.c"
+   2               		.arch atmega168
+   3               	__SREG__ = 0x3f
+   4               	__SP_H__ = 0x3e
+   5               	__SP_L__ = 0x3d
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+   8               		.global __do_copy_data
+   9               		.global __do_clear_bss
+  17               	.Ltext0:
+  18               	.global	timer0Init
+  20               	timer0Init:
+  21               	.LFB2:
+  22               	.LM1:
+  23               	/* prologue: frame size=0 */
+  24               	/* prologue end (size=0) */
+  25               	.LM2:
+  26 0000 6630      		cpi r22,6
+  27 0002 7105      		cpc r23,__zero_reg__
+  28 0004 10F0      		brlo .L2
+  29               	.LM3:
+  30 0006 65E0      		ldi r22,lo8(5)
+  31 0008 70E0      		ldi r23,hi8(5)
+  32               	.L2:
+  33               	.LM4:
+  34 000a 85B5      		in r24,69-0x20
+  35 000c 887F      		andi r24,lo8(-8)
+  36 000e 962F      		mov r25,r22
+  37 0010 9770      		andi r25,lo8(7)
+  38 0012 892B      		or r24,r25
+  39 0014 85BD      		out 69-0x20,r24
+  40               	.LM5:
+  41 0016 16BC      		out 70-0x20,__zero_reg__
+  42               	.LM6:
+  43 0018 A89A      		sbi 53-0x20,0
+  44               	.LM7:
+  45 001a 8091 6E00 		lds r24,110
+  46 001e 8160      		ori r24,lo8(1)
+  47 0020 8093 6E00 		sts 110,r24
+  48               	.LM8:
+  49               	/* #APP */
+  50 0024 7894      		sei
+  51               	/* #NOAPP */
+  52               	/* epilogue: frame size=0 */
+  53 0026 0895      		ret
+  54               	/* epilogue end (size=1) */
+  55               	/* function timer0Init size 21 (20) */
+  56               	.LFE2:
+  58               	.global	timer0Read
+  60               	timer0Read:
+  61               	.LFB3:
+  62               	.LM9:
+  63               	/* prologue: frame size=0 */
+  64               	/* prologue end (size=0) */
+  65               	.LM10:
+  66 0028 86B5      		in r24,70-0x20
+  67               	.LM11:
+  68 002a 9927      		clr r25
+  69               	/* epilogue: frame size=0 */
+  70 002c 0895      		ret
+  71               	/* epilogue end (size=1) */
+  72               	/* function timer0Read size 3 (2) */
+  73               	.LFE3:
+  75               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 timer.c
+     /tmp/ccu0Ogo2.s:3      *ABS*:0000003f __SREG__
+     /tmp/ccu0Ogo2.s:4      *ABS*:0000003e __SP_H__
+     /tmp/ccu0Ogo2.s:5      *ABS*:0000003d __SP_L__
+     /tmp/ccu0Ogo2.s:6      *ABS*:00000000 __tmp_reg__
+     /tmp/ccu0Ogo2.s:7      *ABS*:00000001 __zero_reg__
+     /tmp/ccu0Ogo2.s:20     .text:00000000 timer0Init
+     /tmp/ccu0Ogo2.s:60     .text:00000028 timer0Read
+
+UNDEFINED SYMBOLS
+__do_copy_data
+__do_clear_bss

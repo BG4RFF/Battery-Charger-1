@@ -1,0 +1,37 @@
+Basic Installation
+==================
+
+To use this, unpack into a directory which by default will be batterycharger-pc.
+Also obtain the acquisition-lib package, and unpack it in the same way.
+Obtain QextSerialPort from http://qextserialport.sourceforge.net/ and unpack the
+tarball into the directory qextserialport. This directory is assumed to be at 
+the same directory level as aquisition-pc, you can change this in
+avrserialprog.pro. Make sure that you have QT4 installed. Go into the
+qextserialport directory and execute:
+
+$ qmake-qt4
+$ make clean
+$ make
+
+This will build the qextserialport libraries. Copy these across to one of the
+library directories or change your library search path to allow the linker to
+find them.
+
+Get the acquisition-prog package from these webpages and unpack it into the
+same top directory as acquisition-pc and qextserialport. Follow the instructions
+in the INSTALL.txt file there to compile it.
+
+Return to the batterycharger-pc directory. The serial port used is preset in the
+code. To change this edit the acqunit.h file near the top. Execute:
+
+$ qmake-qt4
+$ make clean
+$ make
+
+This will build the application. Copy the binary to a suitable place and invoke
+with:
+
+$ batterychargercontrol
+
+K. Sarkies
+7/9/2007

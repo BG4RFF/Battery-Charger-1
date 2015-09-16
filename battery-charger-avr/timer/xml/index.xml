@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.5.2">
+  <compound refid="timer_8c" kind="file"><name>timer.c</name>
+    <member refid="timer_8c_1a8cecfc5c5c054d2875c03e77b7be15d" kind="define"><name>TRUE</name></member>
+    <member refid="timer_8c_1a93f0eb578d23995850d61f7d61c55c1" kind="define"><name>FALSE</name></member>
+    <member refid="timer_8c_137510ee4f2bf57f8916f3137bf7d4ebf" kind="function"><name>timer0Init</name></member>
+    <member refid="timer_8c_12adf0209d1f6848fafd9ec30e2e21676" kind="function"><name>timer0Read</name></member>
+  </compound>
+  <compound refid="timer_8h" kind="file"><name>timer.h</name>
+    <member refid="timer_8h_12a26f53e350366af6e573b70ef4036cd" kind="define"><name>_SFR_ASM_COMPAT</name></member>
+    <member refid="timer_8h_143bafb28b29491ec7f871319b5a3b2f8" kind="define"><name>F_CPU</name></member>
+    <member refid="timer_8h_12dd75713acf0fa9e97805a821b3a2dad" kind="define"><name>TIMER_INTERRUPT_MODE</name></member>
+    <member refid="timer_8h_111643f271076024c395a93800b3d9546" kind="define"><name>_BV</name></member>
+    <member refid="timer_8h_15f2f31448ae0df9a545e0ca95e748f16" kind="define"><name>inb</name></member>
+    <member refid="timer_8h_1b5e5eb4fcc7a892227a005faab343610" kind="define"><name>inw</name></member>
+    <member refid="timer_8h_1b2639428f628a54f52f28ace148beb13" kind="define"><name>outb</name></member>
+    <member refid="timer_8h_1af663ae912dca7197d8ffab94ecbfb6d" kind="define"><name>outw</name></member>
+    <member refid="timer_8h_1e70baf5399951da1e7ad45a0ed890832" kind="define"><name>cbi</name></member>
+    <member refid="timer_8h_1c4a5536d9bf092116f88b94797ddc882" kind="define"><name>sbi</name></member>
+    <member refid="timer_8h_1b92fc98e45a0adae9832e4e037f79b41" kind="function"><name>timer0Init</name></member>
+    <member refid="timer_8h_17cf9215ace167364e5b1b2af46b0272d" kind="function"><name>timer0Read</name></member>
+  </compound>
+  <compound refid="indexpage" kind="page"><name>index</name>
+  </compound>
+</doxygenindex>

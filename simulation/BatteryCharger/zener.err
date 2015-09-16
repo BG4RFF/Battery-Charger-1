@@ -1,0 +1,6 @@
+/home/ksarkies/Electronics-Development/spice-models/diodes: No such file or directory
+/home/ksarkies/Electronics-Development/spice-models/bjt: No such file or directory
+/home/ksarkies/Electronics-Development/spice-models/bjt/2N3904.mod: No such file or directory
+Warning: v1: no DC value, transient time 0 value used
+ Reference value :  1.22997e-03 Reference value :  2.63455e-03 Reference value :  3.57567e-03
+Note: No ".plot", ".print", or ".fourier" lines; no simulations run

@@ -1,0 +1,13 @@
+* simulation of batterycharger
+.control
+  set filetype=ascii
+  dc vpanel 1 28 0.1
+
+write
+.endc
+.include /home/ksarkies/Electronics-Development/spice-models/diodes
+.include /home/ksarkies/Electronics-Development/spice-models/
+.include /home/ksarkies/Electronics-Development/spice-models/bjt
+.include /home/ksarkies/Electronics-Development/spice-models/IR
+.include /home/ksarkies/Electronics-Development/spice-models/bjt/2N3904.mod
+.include batterycharger.net

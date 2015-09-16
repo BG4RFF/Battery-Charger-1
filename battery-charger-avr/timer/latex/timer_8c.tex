@@ -1,0 +1,88 @@
+\section{timer.c File Reference}
+\label{timer_8c}\index{timer.c@{timer.c}}
+{\tt \#include $<$avr/io.h$>$}\par
+{\tt \#include $<$avr/interrupt.h$>$}\par
+{\tt \#include \char`\"{}timer.h\char`\"{}}\par
+
+
+Include dependency graph for timer.c:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=114pt]{timer_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define {\bf TRUE}~1
+\item 
+\#define {\bf FALSE}~0
+\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+void {\bf timer0Init} (uint8\_\-t mode, uint16\_\-t timerClock)
+\begin{CompactList}\small\item\em Initialise Timer 0. \item\end{CompactList}\item 
+uint16\_\-t {\bf timer0Read} ()
+\begin{CompactList}\small\item\em Read Timer 0. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Define Documentation}
+\index{timer.c@{timer.c}!FALSE@{FALSE}}
+\index{FALSE@{FALSE}!timer.c@{timer.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define FALSE~0}\label{timer_8c_a93f0eb578d23995850d61f7d61c55c1}
+
+
+
+
+Definition at line 45 of file timer.c.\index{timer.c@{timer.c}!TRUE@{TRUE}}
+\index{TRUE@{TRUE}!timer.c@{timer.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}\#define TRUE~1}\label{timer_8c_a8cecfc5c5c054d2875c03e77b7be15d}
+
+
+
+
+Definition at line 44 of file timer.c.
+
+\subsection{Function Documentation}
+\index{timer.c@{timer.c}!timer0Init@{timer0Init}}
+\index{timer0Init@{timer0Init}!timer.c@{timer.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}void timer0Init (uint8\_\-t {\em mode}, uint16\_\-t {\em timerClock})}\label{timer_8c_37510ee4f2bf57f8916f3137bf7d4ebf}
+
+
+Initialise Timer 0. 
+
+This function will initialise the timer with the mode of operation and the clock rate to be used. An error will be returned if the timer is busy.
+
+Because ATMega64, ATMega128, ATMega103 offer different scale factors, there needs to be a conversion provided between the specification here and the scale setting. The additional clock settings provided for those MCUs are not used here, nor are the external clock settings of the remaining MCUs.
+
+Timer 0 is typically an 8-bit timer and has very basic functionality. Some MCUs offer PWM capability while most do not.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em mode}]Ignored for simple timers. \item[{\em timerClock}]00 Stopped 01 F\_\-CLK 02 F\_\-CLK/8 03 F\_\-CLK/64 04 F\_\-CLK/256 05 F\_\-CLK/1024\end{description}
+\end{Desc}
+The timer continues to run until it is stopped by calling this function with timerClock=0. At the moment, mode does nothing. 
+
+Definition at line 80 of file timer.c.
+
+References inb, outb, outw, and sbi.\index{timer.c@{timer.c}!timer0Read@{timer0Read}}
+\index{timer0Read@{timer0Read}!timer.c@{timer.c}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}uint16\_\-t timer0Read (void)}\label{timer_8c_2adf0209d1f6848fafd9ec30e2e21676}
+
+
+Read Timer 0. 
+
+This function will return the current timer value as a 16 bit unsigned integer even if the timer is only 8 bit. This allows for a possibility of a 16 bit timer being at timer 0 (so far this is not the case in any MCU).
+
+In the event of a 16 bit register, the hardware registers must be accessed high byte first. The avr-gcc compiler does this automatically.
+
+\begin{Desc}
+\item[Returns:]Timer Value. \end{Desc}
+
+
+Definition at line 117 of file timer.c.
+
+References inb, and inw.

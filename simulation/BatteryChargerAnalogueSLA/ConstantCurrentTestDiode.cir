@@ -1,0 +1,9 @@
+* simulation of ConstantCurrentTestDiode
+.control
+  set filetype=ascii
+  dc i1 0 0.2 0.001
+
+write
+.endc
+.include /data/home/ksarkies/Development-Electronics/Spice-models/models.lib
+.include ConstantCurrentTestDiode.net

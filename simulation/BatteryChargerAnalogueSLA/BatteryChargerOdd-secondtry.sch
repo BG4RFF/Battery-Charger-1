@@ -1,0 +1,301 @@
+v 20081231 1
+C 40000 40000 0 0 0 title-B.sym
+C 43800 49000 1 0 0 npn-2.sym
+{
+T 44400 49500 5 10 0 0 0 0 1
+device=NPN_TRANSISTOR
+T 44400 49500 5 10 1 1 0 0 1
+refdes=Q1
+T 43800 49000 5 10 0 0 0 0 1
+file=/home/ksarkies/Development-Electronics/Spice-models/models.lib
+T 44500 49800 5 10 1 1 0 0 1
+value=TIP31
+}
+C 43000 49500 1 90 0 resistor-1.sym
+{
+T 42600 49800 5 10 0 0 90 0 1
+device=RESISTOR
+T 42700 49900 5 10 1 1 180 0 1
+refdes=R1
+T 42500 49500 5 10 1 1 0 0 1
+value=10
+}
+C 46600 49500 1 90 0 resistor-1.sym
+{
+T 46200 49800 5 10 0 0 90 0 1
+device=RESISTOR
+T 46300 49900 5 10 1 1 180 0 1
+refdes=R3
+T 46100 49500 5 10 1 1 0 0 1
+value=100
+}
+C 44400 47500 1 90 0 resistor-1.sym
+{
+T 44000 47800 5 10 0 0 90 0 1
+device=RESISTOR
+T 44800 48200 5 10 1 1 180 0 1
+refdes=R2
+T 44600 47800 5 10 1 1 0 0 1
+value=0.56
+}
+N 42900 50400 52800 50400 4
+{
+T 45300 50100 5 10 1 1 0 0 1
+netname=Q1C
+}
+N 42900 49500 43800 49500 4
+{
+T 43200 49600 5 10 1 1 0 0 1
+netname=Q1B
+}
+N 42900 47400 44300 47400 4
+{
+T 44500 47300 5 10 1 1 0 0 1
+netname=Q2C
+}
+N 46500 49500 46500 45600 4
+N 46500 44700 46500 44000 4
+N 44300 42200 55700 42200 4
+N 47900 43300 47900 42200 4
+N 47900 44500 46500 44500 4
+{
+T 48000 45300 5 10 1 1 0 0 1
+netname=Q4C
+}
+N 44800 45600 46500 45600 4
+{
+T 45800 45800 5 10 1 1 0 0 1
+netname=Q2B
+}
+N 44300 45100 44300 44900 4
+{
+T 43700 45000 5 10 1 1 0 0 1
+netname=Q2E
+}
+N 55700 50400 55700 45900 4
+N 55700 42200 55700 44700 4
+C 44800 45100 1 0 1 npn-2.sym
+{
+T 44200 45600 5 10 0 0 0 6 1
+device=NPN_TRANSISTOR
+T 44200 45600 5 10 1 1 0 6 1
+refdes=Q6
+T 44800 45100 5 10 0 0 0 6 1
+file=/home/ksarkies/Development-Electronics/Spice-models/models.lib
+T 44100 45900 5 10 1 1 0 6 1
+value=TIP31
+}
+C 48400 43300 1 0 1 npn-2.sym
+{
+T 47800 43800 5 10 0 0 0 6 1
+device=NPN_TRANSISTOR
+T 47800 43800 5 10 1 1 0 6 1
+refdes=Q4
+T 48400 43300 5 10 0 0 0 6 1
+file=/home/ksarkies/Development-Electronics/Spice-models/models.lib
+T 48900 44300 5 10 1 1 0 6 1
+value=T2N2222
+}
+C 46700 44700 1 90 0 zener-1.sym
+{
+T 46100 45100 5 10 0 0 90 0 1
+device=DIODE
+T 46200 45200 5 10 1 1 180 0 1
+refdes=D4
+T 46700 44700 5 10 0 0 0 0 1
+file=/home/ksarkies/Development-Electronics/Spice-models/models.lib
+T 46700 44700 5 10 1 1 0 0 1
+value=D1N4099
+T 47000 45100 5 10 1 1 0 0 1
+comment=6.8V
+}
+C 53200 41900 1 0 0 gnd-1.sym
+C 55400 44700 1 0 0 vdc-1.sym
+{
+T 56100 45350 5 10 1 1 0 0 1
+refdes=V1
+T 56100 45550 5 10 0 0 0 0 1
+device=VOLTAGE_SOURCE
+T 56100 45750 5 10 0 0 0 0 1
+footprint=none
+T 56100 45650 5 10 1 1 0 0 1
+value=DC 12V
+}
+C 44000 43700 1 0 0 vdc-1.sym
+{
+T 44700 44250 5 10 1 1 0 0 1
+refdes=V2
+T 44700 44550 5 10 0 0 0 0 1
+device=VOLTAGE_SOURCE
+T 44700 44750 5 10 0 0 0 0 1
+footprint=none
+T 43300 44150 5 10 1 1 0 0 1
+value=DC 6V
+}
+N 44300 49000 44300 48400 4
+{
+T 44500 48700 5 10 1 1 0 0 1
+netname=Q1E
+}
+N 47900 44300 47900 49500 4
+N 44300 42200 44300 43700 4
+C 46300 44000 1 270 0 diode-1.sym
+{
+T 46900 43600 5 10 0 0 270 0 1
+device=DIODE
+T 45900 43500 5 10 1 1 0 0 1
+refdes=D5
+T 46300 44000 5 10 0 0 0 0 1
+file=/home/ksarkies/Development-Electronics/Spice-models/models.lib
+T 45500 43800 5 10 1 1 0 0 1
+value=D1N4001
+}
+C 46300 43100 1 270 0 diode-1.sym
+{
+T 46900 42700 5 10 0 0 270 0 1
+device=DIODE
+T 45900 42700 5 10 1 1 0 0 1
+refdes=D6
+T 46300 43100 5 10 0 0 0 0 1
+file=/home/ksarkies/Development-Electronics/Spice-models/models.lib
+T 45500 43000 5 10 1 1 0 0 1
+value=D1N4001
+}
+N 44300 50400 44300 50000 4
+N 44300 46100 44300 47500 4
+N 42900 49200 42900 49500 4
+T 51400 41100 9 10 1 0 0 0 1
+Lead-Acid Battery Charger SPICE sim
+T 54100 40300 9 10 1 0 0 0 1
+Ken Sarkies 19/May/2010
+C 53200 49000 1 180 1 pnp-2.sym
+{
+T 53800 48600 5 10 0 0 0 2 1
+device=PNP_TRANSISTOR
+T 54000 48500 5 10 1 1 180 6 1
+refdes=Q3
+T 53200 49000 5 10 0 0 0 0 1
+file=/home/ksarkies/Development-Electronics/Spice-models/models.lib
+T 54000 48800 5 10 1 1 0 0 1
+value=Q2N3906
+}
+C 53700 50500 1 180 0 resistor-1.sym
+{
+T 53400 50100 5 10 0 0 180 0 1
+device=RESISTOR
+T 52900 50700 5 10 1 1 0 0 1
+refdes=R5
+T 53600 50800 5 10 1 1 180 0 1
+value=12
+}
+N 52800 50400 52800 48500 4
+{
+T 52300 48500 5 10 1 1 0 0 1
+netname=Q3B
+}
+N 53700 50400 55700 50400 4
+N 53700 50400 53700 49000 4
+C 53700 49500 1 0 1 diode-1.sym
+{
+T 53300 50100 5 10 0 0 0 6 1
+device=DIODE
+T 53100 49300 5 10 1 1 180 6 1
+refdes=D3
+T 53700 49500 5 10 0 0 90 2 1
+file=/home/ksarkies/Development-Electronics/Spice-models/models.lib
+T 54700 49800 5 10 1 1 180 2 1
+value=D1N4001
+}
+C 53800 42200 1 90 0 resistor-1.sym
+{
+T 53400 42500 5 10 0 0 90 0 1
+device=RESISTOR
+T 54300 42900 5 10 1 1 180 0 1
+refdes=R6
+T 54000 42400 5 10 1 1 0 0 1
+value=1K
+}
+N 53700 48000 53700 43100 4
+{
+T 54000 44800 5 10 1 1 0 0 1
+netname=Q3C
+}
+N 52800 48500 53200 48500 4
+C 50900 42600 1 0 1 npn-2.sym
+{
+T 53600 43100 5 10 0 0 0 6 1
+device=NPN_TRANSISTOR
+T 50400 43000 5 10 1 1 0 6 1
+refdes=Q5
+T 54200 42600 5 10 0 0 0 6 1
+file=/home/ksarkies/Development-Electronics/Spice-models/models.lib
+T 51600 43600 5 10 1 1 0 6 1
+value=T2N2222
+}
+N 50400 43600 50400 49500 4
+{
+T 50600 44800 5 10 1 1 0 0 1
+netname=Q5C
+}
+C 50500 49500 1 90 0 resistor-1.sym
+{
+T 50100 49800 5 10 0 0 90 0 1
+device=RESISTOR
+T 51000 50200 5 10 1 1 180 0 1
+refdes=R2
+T 50700 49700 5 10 1 1 0 0 1
+value=1K
+}
+C 48000 49500 1 90 0 resistor-1.sym
+{
+T 47600 49800 5 10 0 0 90 0 1
+device=RESISTOR
+T 48500 50200 5 10 1 1 180 0 1
+refdes=R4
+T 48200 49700 5 10 1 1 0 0 1
+value=1K
+}
+C 43400 48200 1 0 1 npn-2.sym
+{
+T 42800 48700 5 10 0 0 0 6 1
+device=NPN_TRANSISTOR
+T 42800 48700 5 10 1 1 0 6 1
+refdes=Q11
+T 43400 48200 5 10 0 0 0 6 1
+file=/home/ksarkies/Development-Electronics/Spice-models/models.lib
+T 42700 49000 5 10 1 1 0 6 1
+value=Q2N3904
+}
+N 42900 48200 42900 47400 4
+N 43400 48700 44300 48700 4
+C 52500 43200 1 180 0 resistor-1.sym
+{
+T 55500 42800 5 10 0 0 180 0 1
+device=RESISTOR
+T 52100 42700 5 10 1 1 0 0 1
+refdes=R31
+T 52400 42600 5 10 1 1 180 0 1
+value=100
+}
+N 52500 43100 53700 43100 4
+C 49600 43900 1 180 0 resistor-1.sym
+{
+T 49300 43500 5 10 0 0 180 0 1
+device=RESISTOR
+T 49100 43400 5 10 1 1 0 0 1
+refdes=R32
+T 49400 43300 5 10 1 1 180 0 1
+value=100
+}
+N 49600 43800 50400 43800 4
+N 48400 43800 48700 43800 4
+{
+T 48400 43500 5 10 1 1 0 0 1
+netname=Q4B
+}
+N 50900 43100 51600 43100 4
+{
+T 51100 42800 5 10 1 1 0 0 1
+netname=Q5B
+}
+N 50400 42600 50400 42200 4

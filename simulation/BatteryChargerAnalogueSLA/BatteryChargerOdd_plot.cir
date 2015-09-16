@@ -1,0 +1,13 @@
+plot the result
+
+.control
+
+load rawspice.raw
+
+
+*User defined vector and plot commands: 
+
+plot i(VBattery),v(q3c)-v(q3e)
+
+.endc 
+.end 

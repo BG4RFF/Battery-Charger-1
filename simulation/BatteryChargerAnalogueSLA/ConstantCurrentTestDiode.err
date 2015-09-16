@@ -1,0 +1,4 @@
+Warning: d1: breakdown current increased to 6.84344e-05 to resolve
+Warning: incompatibility with specified saturation current
+
+Note: No ".plot", ".print", or ".fourier" lines; no simulations run

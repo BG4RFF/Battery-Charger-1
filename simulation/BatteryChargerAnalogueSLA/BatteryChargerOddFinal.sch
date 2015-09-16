@@ -1,0 +1,286 @@
+v 20081231 1
+C 40000 40000 0 0 0 title-B.sym
+N 41900 50600 50500 50600 4
+N 41900 43100 50500 43100 4
+N 43800 49200 45300 49200 4
+{
+T 44500 49000 5 10 1 1 0 6 1
+netname=Q2B
+}
+N 43300 48700 43300 47500 4
+{
+T 43500 48600 5 10 1 1 0 0 1
+netname=Q2E
+}
+N 50500 50600 50500 45900 4
+N 50500 43100 50500 44700 4
+C 43800 48700 1 0 1 npn-2.sym
+{
+T 43200 49200 5 10 0 0 0 6 1
+device=NPN_TRANSISTOR
+T 43200 49300 5 10 1 1 0 6 1
+refdes=Q2
+T 43800 48700 5 10 0 0 0 6 1
+file=/home/ksarkies/Development-Electronics/Spice-models/models.lib
+T 43200 49000 5 10 1 1 0 6 1
+value=TIP31
+}
+C 46700 42800 1 0 1 gnd-1.sym
+C 50200 44700 1 0 0 vdc-1.sym
+{
+T 50900 45350 5 10 1 1 0 0 1
+refdes=V1
+T 50900 45550 5 10 0 0 0 0 1
+device=VOLTAGE_SOURCE
+T 50900 45750 5 10 0 0 0 0 1
+footprint=none
+T 50900 45650 5 10 1 1 0 0 1
+value=DC 12V
+}
+C 43000 46300 1 0 0 vdc-1.sym
+{
+T 42400 47550 5 10 1 1 0 0 1
+refdes=VBattery
+T 43700 47150 5 10 0 0 0 0 1
+device=VOLTAGE_SOURCE
+T 43700 47350 5 10 0 0 0 0 1
+footprint=none
+T 42200 47050 5 10 1 1 0 0 1
+value=DC 7.2V
+}
+N 43300 49700 43300 50600 4
+T 51400 41100 9 10 1 0 0 0 1
+Lead-Acid Battery Charger SPICE sim
+T 54100 40300 9 10 1 0 0 0 1
+Ken Sarkies 19/May/2010
+C 42800 44300 1 0 0 npn-2.sym
+{
+T 43400 44800 5 10 0 0 0 0 1
+device=NPN_TRANSISTOR
+T 43400 44900 5 10 1 1 0 0 1
+refdes=Q1
+T 42800 44300 5 10 0 0 0 0 1
+file=/home/ksarkies/Development-Electronics/Spice-models/models.lib
+T 43400 44600 5 10 1 1 0 0 1
+value=TIP31
+}
+C 42000 49700 1 90 0 resistor-1.sym
+{
+T 41600 50000 5 10 0 0 90 0 1
+device=RESISTOR
+T 41700 50100 5 10 1 1 180 0 1
+refdes=R1
+T 41400 49700 5 10 1 1 0 0 1
+value=450
+}
+C 43400 43100 1 90 0 resistor-1.sym
+{
+T 43000 43400 5 10 0 0 90 0 1
+device=RESISTOR
+T 43800 43800 5 10 1 1 180 0 1
+refdes=R2
+T 43500 43400 5 10 1 1 0 0 1
+value=0.56
+}
+N 41900 44800 42800 44800 4
+{
+T 42000 46500 5 10 1 1 0 0 1
+netname=Q1B
+}
+N 43300 44300 43300 44000 4
+N 41900 43100 41900 43700 4
+C 42400 43700 1 0 1 npn-2.sym
+{
+T 41800 44200 5 10 0 0 0 6 1
+device=NPN_TRANSISTOR
+T 42400 43600 5 10 1 1 0 6 1
+refdes=Q6
+T 42400 43700 5 10 0 0 0 6 1
+file=/home/ksarkies/Development-Electronics/Spice-models/models.lib
+T 42700 43300 5 10 1 1 0 6 1
+value=BC337
+}
+N 42400 44200 43300 44200 4
+{
+T 42500 44000 5 10 1 1 0 0 1
+netname=Q6B
+}
+C 47700 49700 1 270 1 resistor-1.sym
+{
+T 48100 50000 5 10 0 0 90 2 1
+device=RESISTOR
+T 48000 50100 5 10 1 1 180 6 1
+refdes=R4
+T 48300 49700 5 10 1 1 0 6 1
+value=1K
+}
+N 47800 49700 47800 46300 4
+{
+T 47900 48200 5 10 1 1 0 0 1
+netname=Q4C
+}
+C 47300 45300 1 0 0 npn-2.sym
+{
+T 47900 45800 5 10 0 0 0 0 1
+device=NPN_TRANSISTOR
+T 47900 45800 5 10 1 1 0 0 1
+refdes=Q4
+T 47300 45300 5 10 0 0 0 0 1
+file=/home/ksarkies/Development-Electronics/Spice-models/models.lib
+T 47900 45500 5 10 1 1 0 0 1
+value=BC337
+}
+C 45200 49700 1 270 1 resistor-1.sym
+{
+T 45600 50000 5 10 0 0 90 2 1
+device=RESISTOR
+T 45500 50100 5 10 1 1 180 6 1
+refdes=R3
+T 45800 49700 5 10 1 1 0 6 1
+value=100
+}
+N 45300 49700 45300 48900 4
+C 45100 48000 1 270 1 zener-1.sym
+{
+T 45700 48400 5 10 0 0 90 2 1
+device=DIODE
+T 44700 48700 5 10 1 1 180 6 1
+refdes=D1
+T 45100 48000 5 10 0 0 0 6 1
+file=/home/ksarkies/Development-Electronics/Spice-models/models.lib
+T 45100 48000 5 10 0 0 0 6 1
+value=D1N4100
+T 45000 48300 5 10 1 1 0 6 1
+comment=7.5V
+}
+C 45500 46200 1 90 1 diode-1.sym
+{
+T 44900 45800 5 10 0 0 270 2 1
+device=DIODE
+T 45100 46000 5 10 1 1 0 6 1
+refdes=D4
+T 45500 46200 5 10 0 0 0 6 1
+file=/home/ksarkies/Development-Electronics/Spice-models/models.lib
+T 45500 46200 5 10 0 0 0 6 1
+value=D1N4001
+}
+C 46900 46200 1 0 1 npn-2.sym
+{
+T 46300 46700 5 10 0 0 0 6 1
+device=NPN_TRANSISTOR
+T 46300 46400 5 10 1 1 0 6 1
+refdes=Q3
+T 46900 46200 5 10 0 0 0 6 1
+file=/home/ksarkies/Development-Electronics/Spice-models/models.lib
+T 46300 46100 5 10 1 1 0 6 1
+value=BC337
+}
+N 46400 47200 45300 47200 4
+{
+T 45700 47000 5 10 1 1 0 0 1
+netname=Q3C
+}
+N 43300 45300 49200 45300 4
+{
+T 44900 45100 5 10 1 1 0 0 1
+netname=Q1C
+}
+N 46900 46700 47800 46700 4
+C 45500 44400 1 0 0 resistor-1.sym
+{
+T 45800 44800 5 10 0 0 0 0 1
+device=RESISTOR
+T 45800 44200 5 10 1 1 0 0 1
+refdes=R6
+T 46100 44100 5 10 1 1 180 0 1
+value=100
+}
+C 43400 45300 1 90 0 resistor-1.sym
+{
+T 43000 45600 5 10 0 0 90 0 1
+device=RESISTOR
+T 43100 45900 5 10 1 1 180 0 1
+refdes=R5
+T 42900 45500 5 10 1 1 0 0 1
+value=47
+}
+C 43700 46200 1 270 0 diode-1.sym
+{
+T 44300 45800 5 10 0 0 270 0 1
+device=DIODE
+T 43600 46000 5 10 1 1 0 0 1
+refdes=D5
+T 43700 46200 5 10 0 0 0 0 1
+file=/home/ksarkies/Development-Electronics/Spice-models/models.lib
+T 43700 46200 5 10 0 0 0 0 1
+value=D1N4001
+}
+N 41900 44700 41900 49700 4
+N 43300 46200 44500 46200 4
+N 44500 46200 44500 44500 4
+C 45500 47100 1 90 1 diode-1.sym
+{
+T 44900 46700 5 10 0 0 270 2 1
+device=DIODE
+T 45100 46900 5 10 1 1 0 6 1
+refdes=D3
+T 45500 47100 5 10 0 0 0 6 1
+file=/home/ksarkies/Development-Electronics/Spice-models/models.lib
+T 45500 47100 5 10 0 0 0 6 1
+value=D1N4001
+}
+N 43300 46200 43300 46300 4
+N 46400 45300 46400 46200 4
+N 47100 45800 47300 45800 4
+N 47100 45800 47100 44500 4
+N 44500 44500 45500 44500 4
+{
+T 44900 44300 5 10 1 1 0 0 1
+netname=Q1E
+}
+N 46400 44500 47100 44500 4
+C 49100 49700 1 270 1 resistor-1.sym
+{
+T 49500 50000 5 10 0 0 90 2 1
+device=RESISTOR
+T 49400 50100 5 10 1 1 180 6 1
+refdes=R7
+T 49700 49700 5 10 1 1 0 6 1
+value=1K
+}
+N 49200 48800 49200 46300 4
+C 48700 45300 1 0 0 npn-2.sym
+{
+T 49300 45800 5 10 0 0 0 0 1
+device=NPN_TRANSISTOR
+T 49300 45800 5 10 1 1 0 0 1
+refdes=Q5
+T 48700 45300 5 10 0 0 0 0 1
+file=/home/ksarkies/Development-Electronics/Spice-models/models.lib
+T 49300 45500 5 10 1 1 0 0 1
+value=BC337
+}
+N 48500 45800 48700 45800 4
+C 49400 48800 1 90 0 led-3.sym
+{
+T 48750 49750 5 10 0 0 90 0 1
+device=LED
+T 48850 49550 5 10 1 1 180 0 1
+refdes=D7
+T 49400 48800 5 10 1 1 0 0 1
+comment=Green
+}
+N 47800 46300 48500 46300 4
+N 48500 46300 48500 45800 4
+N 45300 48000 45300 47100 4
+C 47300 45800 1 90 0 capacitor-1.sym
+{
+T 46600 46000 5 10 0 0 90 0 1
+device=CAPACITOR
+T 47000 46100 5 10 1 1 180 0 1
+refdes=C1
+T 46400 46000 5 10 0 0 90 0 1
+symversion=0.1
+T 47700 46600 5 10 1 1 180 0 1
+value=0.1uF
+}

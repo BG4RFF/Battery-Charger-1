@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.5.2">
+  <compounddef id="indexpage" kind="page">
+    <compoundname>index</compoundname>
+    <title>Timer Library</title>
+    <detaileddescription>
+<para>Library of timer functions for the Atmel AVR microcontrollers.<simplesect kind="version"><para>0.1 </para></simplesect>
+<simplesect kind="author"><para>Ken Sarkies (www.jiggerjuice.net) adapted from code by Chris Efstathiou </para></simplesect>
+<simplesect kind="date"><para>2 September 2007</para></simplesect>
+This library aims to provide a range of timer functions for initializing and controlling the opertaion of the timers. It appears to be somewhat difficult to provide a complete set of general functions despite a good compatibility between timers within the Atmel range of AVR processors, because the ISRs are often used in a wide variety of different ways specific to the application. The use of callback functions to the application can result in heavy use of resources.</para><para>Currently only timer 0 is supported here with initialization and reading of its value.</para><para><simplesect kind="note"><para>Software: AVR-GCC 3.4.5 </para><para>Target: All Atmel MCUs with timer functionality </para><para>Tested: ATMega88 at 8MHz. </para></simplesect>
+</para>    </detaileddescription>
+  </compounddef>
+</doxygen>

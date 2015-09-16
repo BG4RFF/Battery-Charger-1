@@ -1,0 +1,359 @@
+   1               		.file	"nartos.c"
+   2               		.arch atmega168
+   3               	__SREG__ = 0x3f
+   4               	__SP_H__ = 0x3e
+   5               	__SP_L__ = 0x3d
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+   8               		.global __do_copy_data
+   9               		.global __do_clear_bss
+  17               	.Ltext0:
+  18               	.global	initNartos
+  20               	initNartos:
+  21               	.LFB2:
+  22               	.LM1:
+  23               	/* prologue: frame size=0 */
+  24               	/* prologue end (size=0) */
+  25               	.LM2:
+  26 0000 E0E0      		ldi r30,lo8(taskTable)
+  27 0002 F0E0      		ldi r31,hi8(taskTable)
+  28 0004 87E0      		ldi r24,lo8(7)
+  29               	.L5:
+  30               	.LBB2:
+  31               	.LM3:
+  32 0006 1182      		std Z+1,__zero_reg__
+  33 0008 1082      		st Z,__zero_reg__
+  34 000a 3296      		adiw r30,2
+  35               	.LM4:
+  36 000c 8150      		subi r24,lo8(-(-1))
+  37 000e 87FF      		sbrs r24,7
+  38 0010 FACF      		rjmp .L5
+  39               	.LBE2:
+  40               	.LM5:
+  41 0012 1092 0000 		sts taskBufferOutPointer,__zero_reg__
+  42               	.LM6:
+  43 0016 1092 0000 		sts taskBufferSize,__zero_reg__
+  44               	/* epilogue: frame size=0 */
+  45 001a 0895      		ret
+  46               	/* epilogue end (size=1) */
+  47               	/* function initNartos size 14 (13) */
+  48               	.LFE2:
+  50               	.global	taskSchedule
+  52               	taskSchedule:
+  53               	.LFB7:
+  54               	.LM7:
+  55               	/* prologue: frame size=0 */
+  56               	/* prologue end (size=0) */
+  57 001c 982F      		mov r25,r24
+  58               	.LM8:
+  59               	/* #APP */
+  60 001e F894      		cli
+  61               		
+  62               	.LM9:
+  63               	/* #NOAPP */
+  64 0020 8091 0000 		lds r24,taskBufferSize
+  65 0024 8830      		cpi r24,lo8(8)
+  66 0026 B0F4      		brsh .L9
+  67               	.LBB3:
+  68               	.LM10:
+  69 0028 E091 0000 		lds r30,taskBufferOutPointer
+  70 002c 8091 0000 		lds r24,taskBufferSize
+  71 0030 E80F      		add r30,r24
+  72               	.LM11:
+  73 0032 E770      		andi r30,lo8(7)
+  74               	.LM12:
+  75 0034 FF27      		clr r31
+  76 0036 EE0F      		add r30,r30
+  77 0038 FF1F      		adc r31,r31
+  78 003a E050      		subi r30,lo8(-(taskBuffer))
+  79 003c F040      		sbci r31,hi8(-(taskBuffer))
+  80 003e 892F      		mov r24,r25
+  81 0040 9927      		clr r25
+  82 0042 8F77      		andi r24,lo8(127)
+  83 0044 9070      		andi r25,hi8(127)
+  84 0046 9183      		std Z+1,r25
+  85 0048 8083      		st Z,r24
+  86               	.LM13:
+  87 004a 8091 0000 		lds r24,taskBufferSize
+  88 004e 8F5F      		subi r24,lo8(-(1))
+  89 0050 8093 0000 		sts taskBufferSize,r24
+  90               	.L9:
+  91               	.LBE3:
+  92               	.LM14:
+  93 0054 6623      		tst r22
+  94 0056 09F4      		brne .L8
+  95               	.LM15:
+  96               	/* #APP */
+  97 0058 7894      		sei
+  98               		
+  99               	/* #NOAPP */
+ 100               	.L8:
+ 101 005a 0895      		ret
+ 102               	/* epilogue: frame size=0 */
+ 103               	/* epilogue: noreturn */
+ 104               	/* epilogue end (size=0) */
+ 105               	/* function taskSchedule size 38 (38) */
+ 106               	.LFE7:
+ 108               	.global	taskStart
+ 110               	taskStart:
+ 111               	.LFB3:
+ 112               	.LM16:
+ 113               	/* prologue: frame size=0 */
+ 114 005c CF93      		push r28
+ 115               	/* prologue end (size=1) */
+ 116 005e 9C01      		movw r18,r24
+ 117               	.LM17:
+ 118 0060 C0E0      		ldi r28,lo8(0)
+ 119               	.LM18:
+ 120 0062 E0E0      		ldi r30,lo8(taskTable)
+ 121 0064 F0E0      		ldi r31,hi8(taskTable)
+ 122               	.LM19:
+ 123               	/* #APP */
+ 124 0066 F894      		cli
+ 125               		
+ 126               	.LM20:
+ 127               	/* #NOAPP */
+ 128 0068 8081      		ld r24,Z
+ 129 006a 9181      		ldd r25,Z+1
+ 130 006c 892B      		or r24,r25
+ 131 006e 41F0      		breq .L13
+ 132               	.L14:
+ 133               	.LM21:
+ 134 0070 3296      		adiw r30,2
+ 135               	.LM22:
+ 136 0072 CF5F      		subi r28,lo8(-(1))
+ 137 0074 8081      		ld r24,Z
+ 138 0076 9181      		ldd r25,Z+1
+ 139 0078 892B      		or r24,r25
+ 140 007a 11F0      		breq .L13
+ 141 007c C830      		cpi r28,lo8(8)
+ 142 007e C0F3      		brlo .L14
+ 143               	.L13:
+ 144               	.LM23:
+ 145 0080 8081      		ld r24,Z
+ 146 0082 9181      		ldd r25,Z+1
+ 147 0084 892B      		or r24,r25
+ 148 0086 31F4      		brne .L15
+ 149               	.LM24:
+ 150 0088 3183      		std Z+1,r19
+ 151 008a 2083      		st Z,r18
+ 152               	.LM25:
+ 153 008c 8C2F      		mov r24,r28
+ 154 008e 0E94 0000 		call taskSchedule
+ 155 0092 01C0      		rjmp .L16
+ 156               	.L15:
+ 157               	.LM26:
+ 158 0094 CFEF      		ldi r28,lo8(-1)
+ 159               	.L16:
+ 160               	.LM27:
+ 161 0096 8C2F      		mov r24,r28
+ 162 0098 9927      		clr r25
+ 163               	/* epilogue: frame size=0 */
+ 164 009a CF91      		pop r28
+ 165 009c 0895      		ret
+ 166               	/* epilogue end (size=2) */
+ 167               	/* function taskStart size 36 (33) */
+ 168               	.LFE3:
+ 170               	.global	nartos
+ 172               	nartos:
+ 173               	.LFB8:
+ 174               	.LM28:
+ 175               	/* prologue: frame size=0 */
+ 176               	/* prologue: naked */
+ 177               	/* prologue end (size=0) */
+ 178               	.LM29:
+ 179               	/* #APP */
+ 180 009e 0F90      		pop __tmp_reg__
+ 181 00a0 0F90      		pop __tmp_reg__
+ 182               		
+ 183               	/* #NOAPP */
+ 184               	.L19:
+ 185               	.LM30:
+ 186 00a2 8091 0000 		lds r24,taskBufferSize
+ 187 00a6 8823      		tst r24
+ 188 00a8 E1F3      		breq .L19
+ 189               	.LM31:
+ 190               	/* #APP */
+ 191 00aa F894      		cli
+ 192               		
+ 193               	.LM32:
+ 194               	/* #NOAPP */
+ 195 00ac E091 0000 		lds r30,taskBufferOutPointer
+ 196               	.LM33:
+ 197 00b0 8091 0000 		lds r24,taskBufferOutPointer
+ 198 00b4 8F5F      		subi r24,lo8(-(1))
+ 199 00b6 8093 0000 		sts taskBufferOutPointer,r24
+ 200 00ba 8091 0000 		lds r24,taskBufferOutPointer
+ 201 00be 8830      		cpi r24,lo8(8)
+ 202 00c0 10F0      		brlo .L22
+ 203 00c2 1092 0000 		sts taskBufferOutPointer,__zero_reg__
+ 204               	.L22:
+ 205               	.LM34:
+ 206 00c6 FF27      		clr r31
+ 207 00c8 EE0F      		add r30,r30
+ 208 00ca FF1F      		adc r31,r31
+ 209 00cc E050      		subi r30,lo8(-(taskBuffer))
+ 210 00ce F040      		sbci r31,hi8(-(taskBuffer))
+ 211 00d0 8081      		ld r24,Z
+ 212 00d2 9181      		ldd r25,Z+1
+ 213 00d4 8093 0000 		sts currentTaskID,r24
+ 214               	.LM35:
+ 215 00d8 E091 0000 		lds r30,currentTaskID
+ 216 00dc FF27      		clr r31
+ 217 00de EE0F      		add r30,r30
+ 218 00e0 FF1F      		adc r31,r31
+ 219 00e2 E050      		subi r30,lo8(-(taskTable))
+ 220 00e4 F040      		sbci r31,hi8(-(taskTable))
+ 221 00e6 2081      		ld r18,Z
+ 222 00e8 3181      		ldd r19,Z+1
+ 223               	.LM36:
+ 224 00ea 8091 0000 		lds r24,taskBufferSize
+ 225 00ee 8150      		subi r24,lo8(-(-1))
+ 226 00f0 8093 0000 		sts taskBufferSize,r24
+ 227               	.LM37:
+ 228 00f4 832F      		mov r24,r19
+ 229 00f6 9927      		clr r25
+ 230               	/* #APP */
+ 231 00f8 2F93      		push r18
+ 232 00fa 8F93      		push r24
+ 233 00fc 1895      		reti
+ 234               		
+ 235               	/* #NOAPP */
+ 236               	/* epilogue: frame size=0 */
+ 237               	/* epilogue: naked */
+ 238               	/* epilogue end (size=0) */
+ 239               	/* function nartos size 60 (60) */
+ 240               	.LFE8:
+ 242               	.global	taskRelinquish
+ 244               	taskRelinquish:
+ 245               	.LFB4:
+ 246               	.LM38:
+ 247               	/* prologue: frame size=0 */
+ 248               	/* prologue: naked */
+ 249               	/* prologue end (size=0) */
+ 250               	.LM39:
+ 251               	/* #APP */
+ 252 00fe 8F91      		pop r24
+ 253 0100 2F91      		pop r18
+ 254 0102 F894      		cli
+ 255               		
+ 256               	.LM40:
+ 257               	/* #NOAPP */
+ 258 0104 E091 0000 		lds r30,currentTaskID
+ 259 0108 FF27      		clr r31
+ 260 010a EE0F      		add r30,r30
+ 261 010c FF1F      		adc r31,r31
+ 262 010e E050      		subi r30,lo8(-(taskTable))
+ 263 0110 F040      		sbci r31,hi8(-(taskTable))
+ 264 0112 9927      		clr r25
+ 265 0114 982F      		mov r25,r24
+ 266 0116 8827      		clr r24
+ 267 0118 820F      		add r24,r18
+ 268 011a 911D      		adc r25,__zero_reg__
+ 269 011c 9183      		std Z+1,r25
+ 270 011e 8083      		st Z,r24
+ 271               	.LM41:
+ 272 0120 60E0      		ldi r22,lo8(0)
+ 273 0122 8091 0000 		lds r24,currentTaskID
+ 274 0126 0E94 0000 		call taskSchedule
+ 275               	.LM42:
+ 276 012a 0E94 0000 		call nartos
+ 277               	/* epilogue: frame size=0 */
+ 278               	/* epilogue: naked */
+ 279               	/* epilogue end (size=0) */
+ 280               	/* function taskRelinquish size 29 (29) */
+ 281               	.LFE4:
+ 283               	.global	taskExit
+ 285               	taskExit:
+ 286               	.LFB5:
+ 287               	.LM43:
+ 288               	/* prologue: frame size=0 */
+ 289               	/* prologue: naked */
+ 290               	/* prologue end (size=0) */
+ 291               	.LM44:
+ 292               	/* #APP */
+ 293 012e 0F90      		pop __tmp_reg__
+ 294 0130 0F90      		pop __tmp_reg__
+ 295 0132 F894      		cli
+ 296               		
+ 297               	.LM45:
+ 298               	/* #NOAPP */
+ 299 0134 E091 0000 		lds r30,currentTaskID
+ 300 0138 FF27      		clr r31
+ 301 013a EE0F      		add r30,r30
+ 302 013c FF1F      		adc r31,r31
+ 303 013e E050      		subi r30,lo8(-(taskTable))
+ 304 0140 F040      		sbci r31,hi8(-(taskTable))
+ 305 0142 1182      		std Z+1,__zero_reg__
+ 306 0144 1082      		st Z,__zero_reg__
+ 307               	.LM46:
+ 308 0146 0E94 0000 		call nartos
+ 309               	/* epilogue: frame size=0 */
+ 310               	/* epilogue: naked */
+ 311               	/* epilogue end (size=0) */
+ 312               	/* function taskExit size 19 (19) */
+ 313               	.LFE5:
+ 315               	.global	taskWait
+ 317               	taskWait:
+ 318               	.LFB6:
+ 319               	.LM47:
+ 320               	/* prologue: frame size=0 */
+ 321               	/* prologue: naked */
+ 322               	/* prologue end (size=0) */
+ 323               	.LM48:
+ 324               	/* #APP */
+ 325 014a 8F91      		pop r24
+ 326 014c 2F91      		pop r18
+ 327 014e F894      		cli
+ 328               		
+ 329               	.LM49:
+ 330               	/* #NOAPP */
+ 331 0150 E091 0000 		lds r30,currentTaskID
+ 332 0154 FF27      		clr r31
+ 333 0156 EE0F      		add r30,r30
+ 334 0158 FF1F      		adc r31,r31
+ 335 015a E050      		subi r30,lo8(-(taskTable))
+ 336 015c F040      		sbci r31,hi8(-(taskTable))
+ 337 015e 9927      		clr r25
+ 338 0160 982F      		mov r25,r24
+ 339 0162 8827      		clr r24
+ 340 0164 820F      		add r24,r18
+ 341 0166 911D      		adc r25,__zero_reg__
+ 342 0168 9183      		std Z+1,r25
+ 343 016a 8083      		st Z,r24
+ 344               	.LM50:
+ 345 016c 0E94 0000 		call nartos
+ 346               	/* epilogue: frame size=0 */
+ 347               	/* epilogue: naked */
+ 348               	/* epilogue end (size=0) */
+ 349               	/* function taskWait size 24 (24) */
+ 350               	.LFE6:
+ 352               		.lcomm taskBufferOutPointer,1
+ 353               		.lcomm taskBufferSize,1
+ 354               		.lcomm taskBuffer,16
+ 355               		.lcomm taskTable,16
+ 356               		.lcomm currentTaskID,1
+ 357               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 nartos.c
+     /tmp/ccQSPtPf.s:3      *ABS*:0000003f __SREG__
+     /tmp/ccQSPtPf.s:4      *ABS*:0000003e __SP_H__
+     /tmp/ccQSPtPf.s:5      *ABS*:0000003d __SP_L__
+     /tmp/ccQSPtPf.s:6      *ABS*:00000000 __tmp_reg__
+     /tmp/ccQSPtPf.s:7      *ABS*:00000001 __zero_reg__
+     /tmp/ccQSPtPf.s:20     .text:00000000 initNartos
+     /tmp/ccQSPtPf.s:354    .bss:00000012 taskTable
+                             .bss:00000000 taskBufferOutPointer
+     /tmp/ccQSPtPf.s:352    .bss:00000001 taskBufferSize
+     /tmp/ccQSPtPf.s:52     .text:0000001c taskSchedule
+     /tmp/ccQSPtPf.s:353    .bss:00000002 taskBuffer
+     /tmp/ccQSPtPf.s:110    .text:0000005c taskStart
+     /tmp/ccQSPtPf.s:172    .text:0000009e nartos
+     /tmp/ccQSPtPf.s:355    .bss:00000022 currentTaskID
+     /tmp/ccQSPtPf.s:244    .text:000000fe taskRelinquish
+     /tmp/ccQSPtPf.s:285    .text:0000012e taskExit
+     /tmp/ccQSPtPf.s:317    .text:0000014a taskWait
+
+UNDEFINED SYMBOLS
+__do_copy_data
+__do_clear_bss

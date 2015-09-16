@@ -1,0 +1,16 @@
+Library of timer functions for the Atmel AVR microcontrollers.\begin{Desc}
+\item[Version:]0.1 \end{Desc}
+\begin{Desc}
+\item[Author:]Ken Sarkies (www.jiggerjuice.net) adapted from code by Chris Efstathiou \end{Desc}
+\begin{Desc}
+\item[Date:]2 September 2007\end{Desc}
+This library aims to provide a range of timer functions for initializing and controlling the opertaion of the timers. It appears to be somewhat difficult to provide a complete set of general functions despite a good compatibility between timers within the Atmel range of AVR processors, because the ISRs are often used in a wide variety of different ways specific to the application. The use of callback functions to the application can result in heavy use of resources.
+
+Currently only timer 0 is supported here with initialization and reading of its value.
+
+\begin{Desc}
+\item[Note:]Software: AVR-GCC 3.4.5 
+
+Target: All Atmel MCUs with timer functionality 
+
+Tested: ATMega88 at 8MHz. \end{Desc}

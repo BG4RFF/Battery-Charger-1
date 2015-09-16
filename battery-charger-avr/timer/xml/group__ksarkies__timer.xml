@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.5.2">
+  <compounddef id="group__ksarkies__timer" kind="group">
+    <compoundname>ksarkies_timer</compoundname>
+    <title>Timer Library</title>
+    <briefdescription>
+<para>Interrupt Timer library This library provides basic functions for performing timer operations. </para>    </briefdescription>
+    <detaileddescription>
+<para><programlisting><codeline><highlight class="preprocessor"><sp/>#include<sp/>&lt;<ref refid="timer_8h" kindref="compound">timer.h</ref>&gt;</highlight><highlight class="normal"><sp/></highlight></codeline>
+</programlisting></para><para>When interrupts are enabled, the ISR can contain a callback function to allow the user to perform critical actions at the exact time the timer has reached its count. To use this facility, create a file timercallback.h in the same directory, with the function prototypes: void timer0CallBack() void timer1CallBack() void timer2CallBack() defined, according to the number of timers in the MCU. This can then be filled out as desired. The callback feature can be disabled.</para><para><simplesect kind="author"><para>Ken Sarkies ksarkies:internode.on.net, <ulink url="http://www.jiggerjuice.net">http://www.jiggerjuice.net</ulink> </para></simplesect>
+</para>    </detaileddescription>
+  </compounddef>
+</doxygen>

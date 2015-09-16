@@ -1,0 +1,9 @@
+* simulation of idealdiode
+.control
+  set filetype=ascii
+  tran 100ns 400us   
+
+write
+.endc
+.include /data/home/ksarkies/Development-Electronics/Spice-models/models.lib
+.include idealdiode.net

@@ -1,0 +1,5 @@
+Warning: d4: breakdown current increased to 6.84344e-05 to resolve
+Warning: incompatibility with specified saturation current
+Warning: v1: no DC value, transient time 0 value used
+ Reference value :  1.00381e-04 Reference value :  2.15331e-04 Reference value :  3.35064e-04
+Note: No ".plot", ".print", or ".fourier" lines; no simulations run

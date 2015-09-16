@@ -1,0 +1,15 @@
+\section{Timer Library}
+\label{group__ksarkies__timer}\index{Timer Library@{Timer Library}}
+Interrupt Timer library This library provides basic functions for performing timer operations.  
+
+
+\begin{Code}\begin{verbatim} #include <timer.h> 
+\end{verbatim}
+\end{Code}
+
+
+
+When interrupts are enabled, the ISR can contain a callback function to allow the user to perform critical actions at the exact time the timer has reached its count. To use this facility, create a file timercallback.h in the same directory, with the function prototypes: void timer0CallBack() void timer1CallBack() void timer2CallBack() defined, according to the number of timers in the MCU. This can then be filled out as desired. The callback feature can be disabled.
+
+\begin{Desc}
+\item[Author:]Ken Sarkies ksarkies:internode.on.net, {\tt http://www.jiggerjuice.net} \end{Desc}
